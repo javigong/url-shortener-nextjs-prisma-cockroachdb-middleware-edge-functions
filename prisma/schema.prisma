@@ -15,8 +15,8 @@ model ShortLink {
   id        Int      @id @default(sequence())
   createdAt DateTime @default(now())
 
-  url       String?   @db.String(2000)
-  slug String @unique
+  url  String? @db.String(2000)
+  slug String  @unique
 
   @@index(slug)
 }
