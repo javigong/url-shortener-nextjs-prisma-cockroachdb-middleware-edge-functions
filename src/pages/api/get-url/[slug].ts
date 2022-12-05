@@ -20,10 +20,14 @@ export default async function handle(
 
     if (!data) {
       res.setHeader("Content-Type", "application/json");
-      res.setHeader("Access-Control-Allow-Origin", "*")
-      res.setHeader("Cache-Control", "s-maxage=10000, stale-while-revalidate")
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Cache-Control", "s-maxage=10000, stale-while-revalidate");
       return res.status(404).json({ error: "URL not found" });
     }
+    
+    res.setHeader("Content-Type", "application/json");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Cache-Control", "s-maxage=10000, stale-while-revalidate");
 
     return res.json(data);
   }
