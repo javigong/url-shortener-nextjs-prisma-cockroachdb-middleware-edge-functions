@@ -12,16 +12,19 @@ export default async function handle(
     return res.send(JSON.stringify({ error: "Please, query a Slug" }));
   }
   if (req.method === "GET") {
-    const shortLink = await prisma.shortLink.findFirst({
+    const data = await prisma.shortLink.findFirst({
       where: {
         slug: slug,
       },
     });
 
-    if (!shortLink) {
+    if (!data) {
+      res.setHeader("Content-Type", "application/json");
+      res.setHeader("Access-Control-Allow-Origin", "*")
+      res.setHeader("Cache-Control", "s-maxage=10000, stale-while-revalidate")
       return res.status(404).json({ error: "URL not found" });
     }
 
-    return res.json(shortLink);
+    return res.json(data);
   }
 }
